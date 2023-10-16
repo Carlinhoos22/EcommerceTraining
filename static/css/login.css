@@ -1,0 +1,8 @@
+#titulo{
+    text-align: center;
+    border-bottom: 1px solid black;
+    margin: 5em;
+    box-shadow: 15px 5px 8px rgb(0, 0, 0);
+    opacity: 0.5;
+}
+
