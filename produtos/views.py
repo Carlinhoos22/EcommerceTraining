@@ -10,7 +10,7 @@ def produtos(request):
 
 def detalhar_produtos(request, id):
     product = Produto.objects.get(pk=id)
-    relogios = Produto.objects.filter(categoria__nome="Relogio")
+    relogios = Produto.objects.filter(categoria__nome="Relogio").exclude(pk=id)
     return render(request, "produtos/detalhar_produto.html", 
                   {"produto": product,
                    "relogios": relogios})
