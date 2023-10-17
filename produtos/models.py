@@ -16,6 +16,7 @@ class Produto(models.Model):
     categoria = models.ForeignKey(Categoria, on_delete=models.PROTECT)
     criado_em = models.DateTimeField(auto_now_add=True)
     desconto = models.DecimalField(max_digits=5, decimal_places=2, default=0)
+    descricao = models.TextField(max_length=9999, default=0)
 
     def __str__(self) -> str:
         return self.nome

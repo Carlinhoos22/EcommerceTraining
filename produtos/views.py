@@ -10,4 +10,4 @@ def produtos(request):
 
 def detalhar_produtos(request, id):
     product = Produto.objects.get(pk=id)
-    return render(request, "produtos/detalhar_produto.html", {"produto": product,})
+    return render(request, "produtos/detalhar_produto.html", {"produto": product})
