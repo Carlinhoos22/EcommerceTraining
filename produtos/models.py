@@ -24,3 +24,8 @@ class Produto(models.Model):
     def discoutend_price(self):
         discounted = self.preco - (self.preco * (self.desconto / 100))
         return round(discounted, 2)
+
+
+class Product(models.Model):
+    name = models.CharField(max_length=250),
+    description = models.CharField(max_length=250),

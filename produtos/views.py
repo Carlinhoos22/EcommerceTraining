@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from produtos.models import Produto
+from django.views.generic import ListView
+from produtos.models import Product
 
 
 def produtos(request):
@@ -14,3 +16,8 @@ def detalhar_produtos(request, id):
     return render(request, "produtos/detalhar_produto.html", 
                   {"produto": product,
                    "relogios": relogios})
+
+
+class ProdutoListView(ListView):
+    model = Product
+    context_object_name = 'produtos'
