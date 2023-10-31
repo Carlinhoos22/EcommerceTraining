@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from produtos.models import Produto
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView, CreateView
 from produtos.models import Product
 
 
@@ -22,3 +22,16 @@ class ProdutoListView(ListView):
     model = Product
     context_object_name = 'produtos'    
     template_name = 'produtos/product_list.html'
+
+
+class ProdutoDetailView(DetailView):
+    model = Product
+    context_object_name = 'produto'
+    template_name = 'produtos/detalhes.html'
+    pk_url_kwarg = 'id'
+
+
+class ProdutoCreateView(CreateView):
+    model = Product
+    fields = ('name', 'description')
+    success_url = "/"
