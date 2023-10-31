@@ -20,4 +20,5 @@ def detalhar_produtos(request, id):
 
 class ProdutoListView(ListView):
     model = Product
-    context_object_name = 'produtos'
+    context_object_name = 'produtos'    
+    template_name = 'produtos/product_list.html'
