@@ -27,5 +27,5 @@ class Produto(models.Model):
 
 
 class Product(models.Model):
-    name = models.CharField(max_length=250),
-    description = models.CharField(max_length=250),
+    name = models.CharField(max_length=250)
+    description = models.CharField(max_length=250, default=0)
