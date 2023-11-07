@@ -1,13 +1,18 @@
 from django.shortcuts import render
 from produtos.models import Produto
-from django.views.generic import ListView, DetailView, CreateView
-from produtos.models import Product
+from django.views.generic import ListView, DetailView
 
 
-def produtos(request):
-    produtos = Produto.objects.filter(categoria__nome="Livro")
-    relogios = Produto.objects.filter(categoria__nome="Relogio")
-    return render(request, "produtos/index.html", {"produtos": produtos, "relogios": relogios})
+class ProdutoListView(ListView):
+    model = Produto
+    context_object_name = 'livro'
+    template_name = 'produtos/index.html'
+
+
+#def produtos(request):
+#    produtos = Produto.objects.filter(categoria__nome="Livro")
+#    relogios = Produto.objects.filter(categoria__nome="Relogio")
+#    return render(request, "produtos/index.html", {"produtos": produtos, "relogios": relogios})
 
 
 def detalhar_produtos(request, id):
@@ -16,22 +21,3 @@ def detalhar_produtos(request, id):
     return render(request, "produtos/detalhar_produto.html", 
                   {"produto": product,
                    "relogios": relogios})
-
-
-class ProdutoListView(ListView):
-    model = Product
-    context_object_name = 'produtos'    
-    template_name = 'produtos/product_list.html'
-
-
-class ProdutoDetailView(DetailView):
-    model = Product
-    context_object_name = 'produto'
-    template_name = 'produtos/detalhes.html'
-    pk_url_kwarg = 'id'
-
-
-class ProdutoCreateView(CreateView):
-    model = Product
-    fields = ('name', 'description')
-    success_url = "/"

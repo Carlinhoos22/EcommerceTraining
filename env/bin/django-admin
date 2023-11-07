@@ -1,4 +1,6 @@
-#!/home/weslley/Documentos/5periodo/wagner/projeto-atualizado-2.0/EcommerceTraining/venv/bin/python3
+#!/bin/sh
+'''exec' "/home/weslley/Área de Trabalho/3av Wagner/EcommerceTraining/env/bin/python3" "$0" "$@"
+' '''
 # -*- coding: utf-8 -*-
 import re
 import sys
