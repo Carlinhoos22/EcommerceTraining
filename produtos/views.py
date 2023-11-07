@@ -5,7 +5,7 @@ from django.views.generic import ListView, DetailView
 
 class ProdutoListView(ListView):
     model = Produto
-    context_object_name = 'livro'
+    context_object_name = 'produtos'
     template_name = 'produtos/index.html'
 
 
