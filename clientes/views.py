@@ -1,8 +1,8 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect
 from django.urls import reverse
-from django.contrib.auth import get_user_model, authenticate, logout, login
+from django.contrib.auth import logout
 from django.contrib import messages
-from django.views.generic import CreateView
+from django.views.generic import CreateView, UpdateView
 from clientes.forms import UserCreateForm
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.views import LoginView
@@ -10,8 +10,8 @@ from django.urls import reverse_lazy
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.messages.views import SuccessMessageMixin
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpResponse
+from django.http import Http404, HttpResponse
+from clientes.models import User
 
 
 # def login_cliente(request):
@@ -33,7 +33,7 @@ class UserLoginView(LoginView):
     template_name = 'clientes/login.html'
 
     def get_success_url(self) -> str:
-        return reverse_lazy('/')
+        return reverse_lazy('produtos:principal')
 
     def form_invalid(self, form: AuthenticationForm) -> HttpResponse:
         messages.error(self.request, "USUÁRIO OU SENHA INVÁLIDOS!")
@@ -55,6 +55,20 @@ class UserCreateView(SuccessMessageMixin, CreateView):
 #         user_created.save()
 
 #     return render(request, "clientes/cadastro.html")
+
+
+class UserUpdateView(SuccessMessageMixin, UpdateView):
+    model = User
+    fields = ['email']
+    template_name = 'clientes/atualizar.html'
+    success_url = '/'
+    success_message = 'Usuário criado!'
+
+    def get_object(self, *args, **kwargs):
+        user = super().get_object(*args, **kwargs)
+        if not user.pk == self.request.user.pk:
+            raise Http404
+        return user
 
 
 def sair_cliente(request):

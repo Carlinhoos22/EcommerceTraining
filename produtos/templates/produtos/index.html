@@ -51,6 +51,7 @@
               <p style="margin: 6px; padding-left: 12px">
                 Bem-vindo {{user.email}}
               </p>
+              <a href="{% url 'clientes:atualizar_cliente' user.id %}">Meu Perfil</a>
               <a href="{% url 'clientes:logout' %}" style="padding-left: 15px">Sair conta</a>
               {% endif %}
             </div>
